@@ -1,0 +1,24 @@
+<nav>
+    <div class="nav-wrapper">
+        <a href="/" class="brand-logo">ReStiDonalds</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            {{#if isHome}}
+                <li class="active"><a href="/">Главная</a></li>
+            {{else}}
+                <li><a href="/">Главная</a></li>
+            {{/if}}
+
+            {{#if isMenu}}
+                <li class="active"><a href="/menu">Mеню</a></li>
+            {{else}}
+                <li><a href="/menu">Mеню</a></li>
+            {{/if}}
+
+            {{#if isBasket}}
+                <li class="active"><a href="/basket">Корзина</a></li>
+            {{else}}
+                <li><a href="/basket">Корзина</a></li>
+            {{/if}}
+        </ul>
+    </div>
+</nav>
