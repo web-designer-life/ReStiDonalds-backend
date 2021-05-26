@@ -19,7 +19,7 @@ const products = {
             img: '/menu/freckles-burger.png',
             id: 3,
             price: 350,
-            toppings: ['Ананас', 'Майонец'],
+            toppings: ['Ананас', 'Майонез'],
         },
         {
             name: 'Timon Burger',
