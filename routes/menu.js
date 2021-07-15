@@ -1,14 +1,17 @@
 const {Router} = require('express')
-const Product = require('../models/product')
+const Burger = require('../models/burger')
+const Other = require('../models/other')
 const router = Router()
 
 router.get('/', async (req, res) => {
-    const products = await Product.find().lean()
+    const burgers = await Burger.find().lean()
+    const others = await Other.find().lean()
     
     res.render('menu', {
         title: 'Меню',
         isMenu: true,
-        products
+        burgers,
+        others
     })
 })
 
@@ -17,12 +20,22 @@ router.get('/:id/edit', async (req, res) => {
         return res.redirect('/')
     }
 
-    const product = await Product.findById(req.params.id).lean()
+    const burger = await Burger.findById(req.params.id).lean()
+    const other = await Other.findById(req.params.id).lean()
 
-    res.render('editProduct', {
-        title: `Редактировать ${product.title}`,
-        product
-    })
+    if (burger) {
+        res.render('editBurger', {
+            title: `Редактировать ${burger.name}`,
+            burger
+        })
+    }
+
+    if (other) {
+        res.render('editOther', {
+            title: `Редактировать ${other.name}`,
+            other
+        })
+    }
 })
 
 router.post('/edit', async (req, res) => {
@@ -30,14 +43,32 @@ router.post('/edit', async (req, res) => {
 
     delete req.body.id
 
-    await Product.findByIdAndUpdate(_id, req.body).lean()
+    if (req.body.toppings) {
+        req.body.toppings = req.body.toppings.split(',')
+    }
+
+    if (req.body.toppings === '') {
+        delete req.body.toppings
+    }
+
+    if (req.body.choices) {
+        req.body.choices = req.body.choices.split(',')
+    }
+
+    if (req.body.choices === '') {
+        delete req.body.choices
+    }
+
+    await Burger.findByIdAndUpdate(_id, req.body).lean()
+    await Other.findByIdAndUpdate(_id, req.body).lean()
 
     res.redirect('/menu')
 })
 
 router.post('/remove', async (req, res) => {
     try {
-        await Product.deleteOne({_id: req.body.id})
+        await Burger.deleteOne({_id: req.body.id})
+        await Other.deleteOne({_id: req.body.id})
 
         res.redirect('/menu')
     } catch (err) {
@@ -46,13 +77,24 @@ router.post('/remove', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-    const product = await Product.findById(req.params.id).lean()
+    const burger = await Burger.findById(req.params.id).lean()
+    const other = await Other.findById(req.params.id).lean()
 
-    res.render('product', {
-        layout: 'empty',
-        title: product.title,
-        product
-    })
+    if (burger) {
+        res.render('burger', {
+            layout: 'empty',
+            title: burger.name,
+            burger
+        })
+    }
+    
+    if (other) {
+        res.render('other', {
+            layout: 'empty',
+            title: other.name,
+            other
+        })
+    }
 })
 
 module.exports = router
