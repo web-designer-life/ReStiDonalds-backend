@@ -1,0 +1,10 @@
+<div class="product">
+    <h1>{{other.name}}</h1>
+    <img src="{{other.img}}" alt="{{other.name}}">
+    <ul> Выбор:
+    {{#each other.choices}}
+    <li>{{this}}</li>
+    {{/each}}
+    </ul>
+    <p class="price big">{{other.price}}</p>
+</div>

@@ -1,0 +1,29 @@
+<h1>Добавить бургер</h1>
+
+<form action="/addBurger" method="POST">
+    <div class="input-field">
+        <input id="name" name="name" type="text" class="validate" required>
+        <label for="name">Название</label>
+        <span class="helper-text" data-error="Введите название"></span>
+    </div>
+    
+    <div class="input-field">
+        <input id="price" name="price" type="number" class="validate" min="0" step=".01" required>
+        <label for="price">Цена</label>
+        <span class="helper-text" data-error="Введите цену"></span>
+    </div>
+
+    <div class="input-field">
+        <input id="img" name="img" type="text" class="validate" required>
+        <label for="img">URL</label>
+        <span class="helper-text" data-error="Введите URL"></span>
+    </div>
+
+    <div class="input-field">
+        <input id="toppings" name="toppings" type="text" class="validate">
+        <label for="toppings">Введите дополнения (Пример: "Ананас,Кетчуп")</label>
+        <span class="helper-text" data-error="Введите дополнения"></span>
+    </div>
+
+    <button class="btn btn-primary">Добавить</button>
+</form>

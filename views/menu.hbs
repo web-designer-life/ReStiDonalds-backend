@@ -1,15 +1,16 @@
 <h1>Меню</h1>
 
-{{#if products.length}}
+<h2>Бургеры</h2>
+{{#if burgers.length}}
 <div class="row">
-{{#each products}}
+{{#each burgers}}
     <div class="col s4">
         <div class="card">
             <div class="card-image">
-                <img src="{{image}}" alt="{{title}}">
+                <img src="{{img}}" alt="{{name}}">
             </div>
             <div class="card-content">
-                <span class="card-title">{{title}}</span>
+                <span class="card-title">{{name}}</span>
                 <p class="price">{{price}}</p>
             </div>
             <div class="card-action">
@@ -21,5 +22,30 @@
 {{/each}}
 </div>
 {{else}}
-<p>Продуктов пока нет</p>
+<p>Бургеров пока нет</p>
+{{/if}}
+
+<h2>Закуски/Напитки</h2>
+{{#if others.length}}
+<div class="row">
+{{#each others}}
+    <div class="col s4">
+        <div class="card">
+            <div class="card-image">
+                <img src="{{img}}" alt="{{name}}">
+            </div>
+            <div class="card-content">
+                <span class="card-title">{{name}}</span>
+                <p class="price">{{price}}</p>
+            </div>
+            <div class="card-action">
+                <a href="/menu/{{_id}}">Открыть продукт</a>
+                <a href="/menu/{{_id}}/edit?allow=true">Редактировать</a>
+            </div>
+        </div>
+    </div>
+{{/each}}
+</div>
+{{else}}
+<p>Закусок/напитков пока нет</p>
 {{/if}}

@@ -14,10 +14,16 @@
                 <li><a href="/menu">Mеню</a></li>
             {{/if}}
 
-            {{#if isФddProduct}}
-                <li class="active"><a href="/addProduct">Добавить продукт</a></li>
+            {{#if isAddBurger}}
+                <li class="active"><a href="/addBurger">Добавить бургер</a></li>
             {{else}}
-                <li><a href="/addProduct">Добавить продукт</a></li>
+                <li><a href="/addBurger">Добавить бургер</a></li>
+            {{/if}}
+
+            {{#if isAddOther}}
+                <li class="active"><a href="/addOther">Добавить закуску/напиток</a></li>
+            {{else}}
+                <li><a href="/addOther">Добавить закуску/напиток</a></li>
             {{/if}}
         </ul>
     </div>
